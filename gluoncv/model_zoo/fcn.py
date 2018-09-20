@@ -42,6 +42,7 @@ class FCN(SegBaseModel):
         super(FCN, self).__init__(nclass, aux, backbone, ctx=ctx, base_size=base_size,
                                   crop_size=crop_size, pretrained_base=True, **kwargs)
         with self.name_scope():
+
             self.head = _FCNHead(2048, nclass, **kwargs)
             self.head.initialize(ctx=ctx)
             self.head.collect_params().setattr('lr_mult', 10)
